@@ -1,0 +1,13 @@
+version: '3'
+services:
+    php:
+        build: .
+        container_name: beyond_importer
+        ports:
+            - 30101:8000
+        restart: unless-stopped
+        volumes:
+            - ./app:/beyond_importer/app
+            - ./config:/beyond_importer/config
+            - ./public:/beyond_importer/public
+            - ./routes:/beyond_importer/routes

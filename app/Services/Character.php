@@ -44,6 +44,7 @@ class Character
     /**
      * @param $name
      * @return mixed|null
+     * @throws \Exception
      */
     public function __get($name)
     {
@@ -52,7 +53,11 @@ class Character
                 return $this->{$name}();
             } catch (\Exception $e) {
                 report($e);
-                return null;
+                if (config('app.debug')){
+                    throw $e;
+                } else {
+                    return null;
+                }
             }
         } else {
             return null;
